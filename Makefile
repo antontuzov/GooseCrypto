@@ -9,7 +9,7 @@ INCLUDES = -Iinclude
 LIBS = -lssl -lcrypto
 
 # Check if gtest is available by trying to compile a simple test
-HAS_GTEST := $(shell echo '\#include <gtest/gtest.h>\nint main(){return 0;}' | $(CXX) -x c++ -o /dev/null - 2>/dev/null && echo YES || echo NO)
+HAS_GTEST := $(shell echo '\#include <gtest/gtest.h>\nint main(){return 0;}' | $(CXX) -std=c++17 -x c++ -o /dev/null - 2>/dev/null && echo YES || echo NO)
 
 # Set gtest includes and libs based on availability
 ifeq ($(HAS_GTEST),YES)

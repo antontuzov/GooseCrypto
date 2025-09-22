@@ -1,0 +1,11 @@
+/Users/admin/Documents/Forbest/GooseCrypto/build/CMakeFiles/goosecrypto_lib.dir
+/Users/admin/Documents/Forbest/GooseCrypto/build/CMakeFiles/goosecrypto_node.dir
+/Users/admin/Documents/Forbest/GooseCrypto/build/CMakeFiles/block_test.dir
+/Users/admin/Documents/Forbest/GooseCrypto/build/CMakeFiles/blockchain_test.dir
+/Users/admin/Documents/Forbest/GooseCrypto/build/CMakeFiles/test.dir
+/Users/admin/Documents/Forbest/GooseCrypto/build/CMakeFiles/edit_cache.dir
+/Users/admin/Documents/Forbest/GooseCrypto/build/CMakeFiles/rebuild_cache.dir
+/Users/admin/Documents/Forbest/GooseCrypto/build/CMakeFiles/list_install_components.dir
+/Users/admin/Documents/Forbest/GooseCrypto/build/CMakeFiles/install.dir
+/Users/admin/Documents/Forbest/GooseCrypto/build/CMakeFiles/install/local.dir
+/Users/admin/Documents/Forbest/GooseCrypto/build/CMakeFiles/install/strip.dir
