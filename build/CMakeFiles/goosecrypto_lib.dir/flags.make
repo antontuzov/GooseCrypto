@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/Users/admin/Documents/Forbest/GooseCrypto/include -I/usr/local/Cellar/boost/1.89.0.reinstall/include
+CXX_INCLUDES = -I/Users/admin/Documents/Forbest/GooseCrypto/include -I/usr/local/opt/openssl@3/include -I/usr/local/Cellar/boost/1.89.0.reinstall/include
 
 CXX_FLAGS = -std=gnu++17
 
