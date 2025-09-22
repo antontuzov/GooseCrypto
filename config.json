@@ -1,0 +1,20 @@
+{
+  "node": {
+    "name": "GooseCrypto Node",
+    "version": "1.0.0",
+    "p2p_port": 1337,
+    "api_port": 8080,
+    "data_dir": "./data",
+    "log_level": "info"
+  },
+  "blockchain": {
+    "difficulty": 4,
+    "block_time": 30,
+    "min_transaction_fee": 0.001
+  },
+  "network": {
+    "max_peers": 50,
+    "discovery_interval": 30,
+    "sync_interval": 10
+  }
+}

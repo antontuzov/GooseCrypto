@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  node1:
+    build: .
+    ports:
+      - "1337:1337"
+      - "8080:8080"
+    volumes:
+      - ./data/node1:/app/data
+    networks:
+      - goosecrypto-network
+
+  node2:
+    build: .
+    ports:
+      - "1338:1337"
+      - "8081:8080"
+    volumes:
+      - ./data/node2:/app/data
+    networks:
+      - goosecrypto-network
+    depends_on:
+      - node1
+
+  node3:
+    build: .
+    ports:
+      - "1339:1337"
+      - "8082:8080"
+    volumes:
+      - ./data/node3:/app/data
+    networks:
+      - goosecrypto-network
+    depends_on:
+      - node1
+
+networks:
+  goosecrypto-network:
+    driver: bridge

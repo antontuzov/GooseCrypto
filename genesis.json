@@ -1,0 +1,10 @@
+{
+  "index": 0,
+  "timestamp": 1640995200,
+  "previous_hash": "0",
+  "merkle_root": "0",
+  "nonce": 0,
+  "difficulty": 4,
+  "transactions": [],
+  "hash": "00000f8a3d2b4c5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e"
+}

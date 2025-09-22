@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GooseCrypto Blockchain Example</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    .container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+    .section {
+      margin-bottom: 30px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    input, button {
+      padding: 10px;
+      margin: 5px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    #result {
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #e9f7ef;
+      border-radius: 4px;
+    }
+    .info {
+      background-color: #e3f2fd;
+      padding: 15px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>GooseCrypto Blockchain Example</h1>
+    
+    <div class="info">
+      <p>This is a demonstration of the GooseCrypto JavaScript client. To interact with a real blockchain, you need to run a GooseCrypto node.</p>
+    </div>
+    
+    <div class="section">
+      <h2>Wallet Creation</h2>
+      <button onclick="createWallet()">Generate New Wallet</button>
+      <div id="walletResult"></div>
+    </div>
+    
+    <div class="section">
+      <h2>Balance Check</h2>
+      <input type="text" id="address" placeholder="Enter GC address (e.g., GC_1234567890abcdef...)" size="50">
+      <button onclick="getBalance()">Get Balance</button>
+      <div id="balanceResult"></div>
+    </div>
+    
+    <div class="section">
+      <h2>Node Status</h2>
+      <button onclick="getNodeStatus()">Get Node Status</button>
+      <div id="statusResult"></div>
+    </div>
+  </div>
+
+  <script>
+    // Mock TONClient for demonstration purposes
+    class TONClient {
+      constructor(baseUrl = 'http://localhost:8080') {
+        this.baseUrl = baseUrl;
+      }
+
+      async getBalance(address) {
+        // Simulate API call delay
+        await new Promise(resolve => setTimeout(resolve, 500));
+        
+        // Validate address format
+        if (!address || !address.startsWith('GC_') || address.length !== 43) {
+          throw new Error('Invalid address format. Address should start with GC_ and be 43 characters long.');
+        }
+        
+        // Return random balance for demonstration
+        return Math.floor(Math.random() * 10000) / 100;
+      }
+
+      async getStatus() {
+        // Simulate API call delay
+        await new Promise(resolve => setTimeout(resolve, 500));
+        
+        // Return mock status
+        return {
+          height: Math.floor(Math.random() * 10000),
+          peers: Math.floor(Math.random() * 50),
+          difficulty: 4,
+          version: "1.0.0"
+        };
+      }
+    }
+
+    // Mock CryptoUtils for demonstration purposes
+    const CryptoUtils = {
+      generateKeyPair() {
+        // Generate mock key pair
+        const publicKey = 'GC_public_key_' + Math.random().toString(36).substring(2, 15);
+        const privateKey = 'GC_private_key_' + Math.random().toString(36).substring(2, 15);
+        return { publicKey, privateKey };
+      },
+      
+      generateAddress(publicKey) {
+        // Generate mock address
+        return 'GC_' + publicKey.substring(0, 40);
+      }
+    };
+
+    // Create a global client instance
+    const client = new TONClient('http://localhost:8080');
+    
+    async function createWallet() {
+      try {
+        const walletResult = document.getElementById('walletResult');
+        walletResult.innerHTML = '<p>Generating wallet...</p>';
+        
+        // Generate wallet
+        const keyPair = CryptoUtils.generateKeyPair();
+        const address = CryptoUtils.generateAddress(keyPair.publicKey);
+        
+        walletResult.innerHTML = `
+          <h3>Wallet Created Successfully!</h3>
+          <p><strong>Address:</strong> ${address}</p>
+          <p><strong>Public Key:</strong> ${keyPair.publicKey}</p>
+          <p><strong>Private Key:</strong> ${keyPair.privateKey}</p>
+          <p class="warning"><strong>Warning:</strong> This is a demonstration. Never share your private key!</p>
+        `;
+      } catch (error) {
+        document.getElementById('walletResult').innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+      }
+    }
+    
+    async function getBalance() {
+      const address = document.getElementById('address').value;
+      const balanceResult = document.getElementById('balanceResult');
+      
+      if (!address) {
+        balanceResult.innerHTML = '<p style="color: red;">Please enter an address</p>';
+        return;
+      }
+      
+      try {
+        balanceResult.innerHTML = '<p>Fetching balance...</p>';
+        const balance = await client.getBalance(address);
+        balanceResult.innerHTML = `<p><strong>Balance:</strong> ${balance} GC</p>`;
+      } catch (error) {
+        balanceResult.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+      }
+    }
+    
+    async function getNodeStatus() {
+      const statusResult = document.getElementById('statusResult');
+      
+      try {
+        statusResult.innerHTML = '<p>Fetching node status...</p>';
+        const status = await client.getStatus();
+        statusResult.innerHTML = `
+          <h3>Node Status</h3>
+          <p><strong>Height:</strong> ${status.height}</p>
+          <p><strong>Peers:</strong> ${status.peers}</p>
+          <p><strong>Difficulty:</strong> ${status.difficulty}</p>
+          <p><strong>Version:</strong> ${status.version}</p>
+        `;
+      } catch (error) {
+        statusResult.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+      }
+    }
+  </script>
+</body>
+</html>
