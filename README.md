@@ -1,6 +1,6 @@
 # GooseCrypto Blockchain
 
-A TON-like blockchain implementation in C++ with JavaScript/TypeScript API integration.
+ Blockchain implementation in C++ with JavaScript/TypeScript API integration.
 
 ## Project Structure
 
